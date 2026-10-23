@@ -88,13 +88,12 @@ function showCrops(){
     const crop = model.data.crops
     const season = model.viewState.cropPage.cropSeason
     const filter = model.viewState.cropPage.cropSearch
-    let list = []
-    list = filterBySearch(filter, list, crop)
+    let list = filterBySearch(filter, crop)
     list = filterBySeason(season, list)
 
     for (let i = 0; i < list.length; i++){
         html += /*HTML*/ `
-                <div class="item" onclick="cropSelect(${i})">
+                <div class="item" onclick="cropSelect(${crop.indexOf(list[i])})">
                 <img class="itemimg" src="${list[i].icon}">
                 ${list[i].text}</div>
             `
@@ -102,21 +101,14 @@ function showCrops(){
     document.querySelector('#cropsDisplay').innerHTML = html
 }
 
-function filterBySearch(filter, list, crop) {
-    if (filter !== '') {
-        list = crop.filter(item => item.text.toLowerCase().includes(filter.toLowerCase()))
-    } else {
-        list = [...crop]
-    }
-    console.log(list)
-    return list
+function filterBySearch(filter, crops) {
+    if (filter === '') return [...crops]
+    return crops.filter(item => item.text.toLowerCase().includes(filter.toLowerCase()))
 }
 
 function filterBySeason(currentSeason, list){
-    const crop = model.data.crops
-    list = crop.filter(item => item.season == currentSeason)
-    //console.log(list)
-    return list
+    if(currentSeason === 'all') return list
+    return list.filter(item => item.season === currentSeason)
 }
 
 
