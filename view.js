@@ -108,7 +108,7 @@ function filterBySearch(filter, crops) {
 
 function filterBySeason(currentSeason, list){
     if(currentSeason === 'all') return list
-    return list.filter(item => item.season === currentSeason)
+    return list.filter(item => item.season === currentSeason || item.season.includes(currentSeason))
 }
 
 
