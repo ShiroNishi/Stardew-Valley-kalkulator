@@ -11,6 +11,7 @@ function searchCrop(input){
 
 function cropSelect(index){
     model.viewState.cropPage.selectedCrop = model.data.crops[index]
+    calcTotalEarnings()
     showSelCrop()
 }
 
@@ -22,4 +23,18 @@ function removeSel(){
 function setSeason(season){
     model.viewState.cropPage.cropSeason = season
     showCrops()
+}
+
+function numSeeds(input){
+    model.viewState.cropPage.amountSeeds = parseInt(input)
+}
+
+function calcTotalEarnings(){
+    let crops = model.data.crops
+    let selCrop = model.viewState.cropPage.selectedCrop
+    for (let i = 0; i < crops.length; i++){
+        if (crops[i].text === selCrop.text) {
+            //hent ut prisen og lagre den i modell
+        }
+    }
 }

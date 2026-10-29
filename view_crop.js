@@ -6,7 +6,7 @@ function updateView(){
     else if (model.currentPage === 'artisanPage') loadedPage = artisanView()
     let header = /*HTML*/`
         <header>
-            <h1>Stardew Valley Calculator</h1>
+            <h1 style="color:brown">Stardew Valley Calculator</h1>
             <section id="calcType">
                 <button onclick="changePage('crops')">Crops</button>
                 <button onclick="changePage('artisan')">Artisan Goods</button>
@@ -34,20 +34,25 @@ function cropView(){
         </select>
     </section>
 
+<!------- CROP SELECT -->
     <div id="grid-container">
-        <div>
-            <p>Crop selector:</p>
-            <input type="checkbox"> Include trees
-            <br>
-            <input placeholder="Search crops"
-            oninput="searchCrop(this.value)">
-            <div id="cropsDisplay"></div>
+        <div class="grid-item">
+                <div style="position: fixed">
+                    <p>Crop selector:</p>
+                    <input type="checkbox"> Include trees
+                    <br>
+                    <input placeholder="Search crops"
+                    oninput="searchCrop(this.value)">
+            </div>
+            <div id="cropsDisplay" 
+            style="padding-top: 100px"></div>
         </div>
-<!-------------------------------------------------------->
-        <div>
+<!------- CONFIG ------>
+        <div class="grid-item">
             <p>Configurations:</p>
             <p>Number of Seeds:</p>
-            <input placeholder="0">
+            <input placeholder="0"
+            oninput="numSeeds(this.value)">
             <p>Fertilizer:</p>
             <select>
                 <option>None</option>
@@ -58,11 +63,11 @@ function cropView(){
             <p>Profession: </p>
             <input type="checkbox"> Tiller
         </div>
-<!-------------------------------------------------------->
-        <div>
+<!------ RESULT ---------->
+        <div class="grid-item">
         <p>Result and Profit</p>
         <p>Total earnings:</p>
-        <div>2000g</div>
+        <div> g</div>
         <p>Expenses:</p>
         <div>500g</div>
         <p>Net income:</p>
@@ -111,7 +116,6 @@ function filterBySeason(currentSeason, list){
     return list.filter(item => item.season === currentSeason) 
 }
 
-
 function showSelCrop(){
     let item = model.viewState.cropPage.selectedCrop
     let html = /*HTML*/ `
@@ -137,3 +141,5 @@ item =>  vs (item) => :
     trenger parantesene HVIS du skal sende med indexen. (item, index)
 
 */
+
+

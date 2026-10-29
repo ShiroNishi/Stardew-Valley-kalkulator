@@ -6,6 +6,7 @@ const model = {
             cropSeason: "spring",
             cropSearch: '',
             selectedCrop: '',
+            amountSeeds: '',
         }
 
     },

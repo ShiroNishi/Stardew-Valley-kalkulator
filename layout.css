@@ -1,0 +1,19 @@
+body {
+    margin: 0% 10%;
+}
+
+#grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.itemimg {
+    height: 30px;
+    width: 30px;
+}
+
+.item:hover {
+    color: #b05c02;
+    cursor: pointer;
+}
