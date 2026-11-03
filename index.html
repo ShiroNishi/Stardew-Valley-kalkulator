@@ -8,13 +8,17 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body id="app">
+<body id="app" onload="updateView()">
     
     <script src="model.js"></script> 
     <script src="router.js"></script>
-    <script src="view_artisan.js"></script>
-    <script src="view_crop.js"></script> 
-    <script src="controller.js"></script>
+
+    <script src="view/view_artisan.js"></script>
+    <script src="view/view_crop.js"></script> 
+
+    <script src="controller/common.js"></script>
+    <script src="controller/controller_crop.js"></script>
+    <script src="controller/controller_artisan.js"></script>
     
 </body>
 </html>
