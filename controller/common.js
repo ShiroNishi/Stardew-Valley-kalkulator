@@ -8,3 +8,7 @@ function setSeason(season){
     model.viewState.cropPage.cropSeason = season
     showCrops()
 }
+
+function calculateCropProfit(){
+    return null
+}

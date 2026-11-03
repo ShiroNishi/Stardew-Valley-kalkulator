@@ -35,7 +35,7 @@ function cropView(){
             <input placeholder="0"
             oninput="numSeeds(this.value)">
             <p>Fertilizer:</p>
-            <select>
+            <select onchange="model.viewState.cropPage.fertilizerType=this.value">
                 ${showFertilizer()}
             </select>
             <p>Profession: </p>
@@ -51,7 +51,7 @@ function cropView(){
             <div>500g</div>
             <p>Net income:</p>
             <div>1500g</div>
-            <button>Calculate</button>
+            <button onclick="calculateCropProfit()">Calculate</button>
         </div>
 
     </div>
@@ -115,10 +115,10 @@ function showFertilizer(){
     let html = /*HTML*/ `<option value="none">None</option>`
     for (item of fertilizer){
         html += /*HTML*/ `
-        <option value="${item.speed}"
-        oncchange="">${item.text}</option>
+        <option value="${item.speed}">${item.text}</option>
         `
     }
+    
     return html
 }
 

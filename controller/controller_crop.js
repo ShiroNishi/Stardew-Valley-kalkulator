@@ -33,3 +33,9 @@ function calcTotalEarnings(){
         }
     }
 }
+
+//
+//function fertilizerSelect(type){
+//    console.log(type)
+//    model.viewState.cropPage.fertilizerType=type
+//}
