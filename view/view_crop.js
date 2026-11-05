@@ -41,6 +41,7 @@ function cropView(){
             <p>Profession: </p>
             <input type="checkbox"
             oninput="checkTiller()"> Tiller
+            <button onclick="fertilizerSelect(model.viewState.cropPage.fertilizerType)">test</button>
         </div>
 <!------ RESULT ---------->
         <div class="grid-item">
@@ -49,10 +50,8 @@ function cropView(){
             <div>${model.viewState.cropPage.totalEarnings} g</div>
             <p>Expenses:</p>
             <div>${model.viewState.cropPage.expenses} g</div>
-            <p>Net income:</p>
-            <div>${model.viewState.cropPage.netIncome} g</div>
-            <p>Net income per day:</p>
-            <div>${model.viewState.cropPage.netIncomeDay} g</div>
+            <p>Net income / per day:</p>
+            <div>${model.viewState.cropPage.netIncome} g / ${model.viewState.cropPage.netIncomeDay} g per day</div>
             <button onclick="calculateCropProfit()">Calculate</button>
 
         </div>

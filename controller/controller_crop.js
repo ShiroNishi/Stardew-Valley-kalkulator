@@ -5,20 +5,36 @@ function searchCrop(input){
 
 function cropSelect(index){
     model.viewState.cropPage.selectedCrop = model.data.crops[index]
+    let selectedCrop = model.viewState.cropPage.selectedCrop
+    localStorage.setItem("selectedCrop", JSON.stringify(selectedCrop))
+
     showSelCrop()
 }
 
 function removeSel(){
     model.viewState.cropPage.selectedCrop = ''
+    let selectedCrop = model.viewState.cropPage.selectedCrop
+    localStorage.setItem("selectedCrop", selectedCrop)
     showCrops()
 }
 
 function numSeeds(input){
     model.viewState.cropPage.amountSeeds = parseInt(input)
+    let selectedSeeds = model.viewState.cropPage.amountSeeds
+    localStorage.setItem("selectedSeeds", selectedSeeds)
+}
+
+function fertilizerSelect(type){
+    console.log(type) //dette er type.speed du får
+    model.viewState.cropPage.fertilizerType=type
+    
+
 }
 
 function checkTiller(){
     model.viewState.cropPage.tiller ^= 1;
+    let tiller = model.viewState.cropPage.tiller
+    localStorage.setItem("tillerCheck", tiller)
 }
 
 function calculateCropProfit(){
@@ -55,9 +71,3 @@ function calcExpenses(){
     return model.viewState.cropPage.expenses = fullExpenses
 
 }
-
-//
-//function fertilizerSelect(type){
-//    console.log(type)
-//    model.viewState.cropPage.fertilizerType=type
-//}

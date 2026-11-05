@@ -1,7 +1,7 @@
 function updateView(){
     let loadedPage = "";
-    if (model.currentPage === "cropPage") loadedPage = cropView();
-    else if (model.currentPage === "artisanPage") loadedPage = artisanView();
+    if (model.app.currentPage === "cropPage") loadedPage = cropView();
+    else if (model.app.currentPage === "artisanPage") loadedPage = artisanView();
     let header = /*HTML*/`
         <header>
             <h1 style="color:brown">Stardew Valley Calculator</h1>
