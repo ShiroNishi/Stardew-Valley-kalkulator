@@ -21,17 +21,39 @@ function checkTiller(){
     model.viewState.cropPage.tiller ^= 1;
 }
 
-function calcTotalEarnings(){
-    let crops = model.data.crops
-    const selCrop = model.viewState.cropPage.selectedCrop
-    const amount = model.viewState.cropPage.amountSeeds
+function calculateCropProfit(){
+    calcTotalEarnings(); 
+    calcExpenses();
+    //calcNetIncome();
+
+    updateView();
+}
+
+function findSelectedCrop(){
+    let crops = model.data.crops;
+    const selCrop = model.viewState.cropPage.selectedCrop;
     for (let i = 0; i < crops.length; i++){
-        if (crops[i].text === selCrop.text) {
-            let fullPrice = crops[i].price * amount
-            console.log(fullPrice)
-            
-        }
-    }
+        if (crops[i].text === selCrop.text) return crops[i];
+}}
+
+function calcTotalEarnings(){
+    const amount = model.viewState.cropPage.amountSeeds;
+    const fertilizer = model.viewState.cropPage.fertilizerType;
+    const tiller = model.viewState.cropPage.tiller;
+    const currentCrop = findSelectedCrop();
+
+    let fullPrice = currentCrop.price * amount;
+    if (fertilizer) console.log("Denne gjør ikke noe enda");
+    if (tiller == 1) fullPrice = fullPrice * 1.1;
+    return model.viewState.cropPage.totalEarnings = fullPrice;
+}
+
+function calcExpenses(){
+    const amount = model.viewState.cropPage.amountSeeds;
+    const currentCrop = findSelectedCrop();
+    let fullExpenses = currentCrop.price * amount;
+    return model.viewState.cropPage.expenses = fullExpenses
+
 }
 
 //

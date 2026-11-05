@@ -46,12 +46,15 @@ function cropView(){
         <div class="grid-item">
             <p>Result and Profit</p>
             <p>Total earnings:</p>
-            <div>0 g</div>
+            <div>${model.viewState.cropPage.totalEarnings} g</div>
             <p>Expenses:</p>
-            <div>500g</div>
+            <div>${model.viewState.cropPage.expenses} g</div>
             <p>Net income:</p>
-            <div>1500g</div>
+            <div>${model.viewState.cropPage.netIncome} g</div>
+            <p>Net income per day:</p>
+            <div>${model.viewState.cropPage.netIncomeDay} g</div>
             <button onclick="calculateCropProfit()">Calculate</button>
+
         </div>
 
     </div>
@@ -112,7 +115,7 @@ function showSelCrop(){
 
 function showFertilizer(){
     const fertilizer = model.data.fertilizer
-    let html = /*HTML*/ `<option value="none">None</option>`
+    let html = /*HTML*/ `<option value=''>None</option>`
     for (item of fertilizer){
         html += /*HTML*/ `
         <option value="${item.speed}">${item.text}</option>
