@@ -33,14 +33,16 @@ function cropView(){
             <p>Configurations:</p>
             <p>Number of Seeds:</p>
             <input placeholder="0"
+            value="${model.viewState.cropPage.amountSeeds}"
             oninput="numSeeds(this.value)">
             <p>Fertilizer:</p>
-            <select onchange="model.viewState.cropPage.fertilizerType=this.value">
+            <select onchange="fertilizerSelect(this.value)">
                 ${showFertilizer()}
             </select>
             <p>Profession: </p>
             <input type="checkbox"
-            oninput="checkTiller()"> Tiller
+                ${model.viewState.cropPage.tiller ? 'checked' : ''}
+                onchange="checkTiller()"> Tiller
             <button onclick="fertilizerSelect(model.viewState.cropPage.fertilizerType)">test</button>
         </div>
 <!------ RESULT ---------->
@@ -65,6 +67,12 @@ function showCrops(){
     let html = ''
     if (!document.querySelector('#cropsDisplay')) return 
     //^Eksisterer elementet med denne ID'en? Hvis ikke, returner
+
+    if (model.viewState.cropPage.selectedCrop) {
+        showSelCrop();
+        return;
+    }
+
     const crop = model.data.crops
     const season = model.viewState.cropPage.cropSeason
     const filter = model.viewState.cropPage.cropSearch
@@ -113,11 +121,15 @@ function showSelCrop(){
 }
 
 function showFertilizer(){
-    const fertilizer = model.data.fertilizer
-    let html = /*HTML*/ `<option value=''>None</option>`
+    const fertilizer = model.data.fertilizer;
+    const selected = String(model.viewState.cropPage.fertilizerType);
+    let html = /*HTML*/ `<option value='' ${selected === '' ? 'selected' : ''}>None</option>`
+    
     for (item of fertilizer){
+        const value = String(item.speed);
         html += /*HTML*/ `
-        <option value="${item.speed}">${item.text}</option>
+        <option value="${value}" ${selected === value ? 'selected' : ''}>
+        ${item.text}</option>
         `
     }
     

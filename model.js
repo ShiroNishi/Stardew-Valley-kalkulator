@@ -1,11 +1,6 @@
 const model = {
     app: {
         currentPage: 'cropPage',
-        savedSelectedCrop: localStorage.getItem("selectedCrop"),
-        savedSelectedSeeds: localStorage.getItem("selectedSeeds"),
-        //savedSelectedFertilizer: localStorage,
-        savedSelectedTiller: localStorage.getItem("tillerCheck"),
-
     },
 
     viewState: {
