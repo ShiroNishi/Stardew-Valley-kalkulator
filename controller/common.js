@@ -1,9 +1,10 @@
 function loadSavedData(){
-    const savedSelectedSeason = localStorage.getItem("selectedSeason")
-    const savedSelectedCrop = localStorage.getItem("selectedCrop")
-    const savedSelectedSeeds = localStorage.getItem("selectedSeeds")
-    const savedSelectedFertilizer = localStorage.getItem("selectedFertilizer")
-    const savedSelectedTiller = localStorage.getItem("tillerCheck")
+    const savedSelectedSeason = localStorage.getItem("selectedSeason");
+    const savedSelectedCrop = localStorage.getItem("selectedCrop");
+    const savedSelectedSeeds = localStorage.getItem("selectedSeeds");
+    const savedSelectedFertilizer = localStorage.getItem("selectedFertilizer");
+    const savedSelectedTiller = localStorage.getItem("tillerCheck");
+    const validSeasons = ["spring", "summer", "fall", "winter", "all"];
     
     if(savedSelectedCrop) {
         try {
@@ -15,6 +16,9 @@ function loadSavedData(){
         }
     }
     
+    if (validSeasons.includes(savedSelectedSeason)) {
+        model.viewState.cropPage.cropSeason = savedSelectedSeason;
+    }
     if (savedSelectedSeason) model.viewState.cropPage.cropSeason = savedSelectedSeason;
     if (savedSelectedSeeds) model.viewState.cropPage.amountSeeds = savedSelectedSeeds;
     if (savedSelectedFertilizer) model.viewState.cropPage.fertilizerType = savedSelectedFertilizer;

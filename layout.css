@@ -17,3 +17,21 @@ body {
     color: #b05c02;
     cursor: pointer;
 }
+
+.crop-selector {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.crop-selector-header {
+    flex: none;
+}
+
+#cropsDisplay {
+    margin-top: -80px;
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+}

@@ -1,22 +1,12 @@
 function cropView(){
     let html = /*HTML*/ `
     <h2>Crop & Profit Calculator</h2>
-    <section>
-        Choose season:
-        <select onchange="setSeason(this.value)">
-            <option value="spring">Spring</option>
-            <option value="summer">Summer</option>
-            <option value="fall">Fall</option>
-            <option value="winter">Winter</option>
-            <option value="all">All</option>
-        </select>
-    </section>
-
+    <div>${seasonSelectionView()}</div>
 <!------- CROP SELECT -->
     <div id="grid-container">
 
-        <div class="grid-item">
-            <div style="position: fixed"; top: 0px;>
+        <div class="grid-item crop-selector">
+            <div class="crop-selector-header">
                 <p>Crop selector:</p>
                 <input type="checkbox"> Include trees
                 <br>

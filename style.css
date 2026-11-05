@@ -5,11 +5,12 @@ body {
 }
 
 .grid-item {
+    min-height: 300px;
     min-width: 170px;
     height: 270px;
     overflow: auto;
     border: solid #653602;
     border-width: 5px;
     background-color: beige;
-    padding: 5px 30px 10px 15px;
+    padding: 5px 5px 10px 15px;
 }
