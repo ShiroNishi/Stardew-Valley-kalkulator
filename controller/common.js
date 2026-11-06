@@ -38,7 +38,3 @@ function setSeason(season){
     localStorage.setItem("selectedSeason", season)
     showCrops()
 }
-
-function calculateCropProfit(){
-    return null
-}
