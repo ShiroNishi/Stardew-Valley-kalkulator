@@ -5,8 +5,8 @@ function cropView(){
 <!------- CROP SELECT -->
     <div id="grid-container">
 
-        <div class="grid-item crop-selector">
-            <div class="crop-selector-header">
+        <div class="grid-item">
+            <div>
                 <p>Crop selector:</p>
                 <input type="checkbox"> Include trees
                 <br>
