@@ -12,6 +12,7 @@ const model = {
 
             amountSeeds: '',
             fertilizerType: '',
+            noProf: 0,
             tiller: 0,
             agriculturist: 0,
 

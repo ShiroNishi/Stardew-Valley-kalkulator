@@ -17,3 +17,11 @@ body {
     color: #b05c02;
     cursor: pointer;
 }
+
+#quality-selector {
+    display: flex;
+    gap: 9px;
+    align-items: center;
+    align-self: center;
+    text-align: center;
+}

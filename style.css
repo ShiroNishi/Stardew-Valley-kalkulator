@@ -21,3 +21,13 @@ body {
     z-index: 1;
     background-color: beige;
 }
+
+.quality {
+    background-color: #ffffffd3;
+    border: solid 1px #9a580e;
+    height: 40px;
+    width: 40px;
+    min-height: 40px;
+    min-width: 40px;
+    cursor: pointer;
+}

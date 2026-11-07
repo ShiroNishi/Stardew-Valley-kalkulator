@@ -22,16 +22,24 @@ function fertilizerSelect(type){
     localStorage.setItem("selectedFertilizer", type)
 }
 
-function checkTiller(){
-    model.viewState.cropPage.tiller = 1;
-    model.viewState.cropPage.agriculturist = 0;
-    localStorage.setItem("tillerCheck", model.viewState.cropPage.tiller)
-}
+function checkProfession(type){
+    if (type == 'none') {
+        model.viewState.cropPage.noProf = 1;
+        model.viewState.cropPage.tiller = 0;
+        model.viewState.cropPage.agriculturist = 0;
+    } else if (type == 'tiller') {
+        model.viewState.cropPage.noProf = 0;
+        model.viewState.cropPage.tiller = 1;
+        model.viewState.cropPage.agriculturist = 0;
+    } else if (type == 'agriculturist') {
+        model.viewState.cropPage.noProf = 0;
+        model.viewState.cropPage.tiller = 0;
+        model.viewState.cropPage.agriculturist = 1;
+    }
 
-function checkAgriculturist(){
-    model.viewState.cropPage.tiller = 0;
-    model.viewState.cropPage.agriculturist = 1;
+    localStorage.setItem("tillerCheck", model.viewState.cropPage.tiller)
     localStorage.setItem("agriculturistCheck", model.viewState.cropPage.agriculturist)
+    localStorage.setItem("noProfCheck", model.viewState.cropPage.noProf)
 }
 
 function calculateCropProfit(){

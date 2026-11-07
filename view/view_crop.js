@@ -29,15 +29,16 @@ function cropView(){
             </select>
             <p>Profession: </p>
             <input type="radio" name="profession" value="checked"
-                > None
+                ${model.viewState.cropPage.noProf == 1 ? 'checked' : ''}    
+                onchange="checkProfession('none)"> None
             <br>
             <input type="radio" name="profession"
                 ${model.viewState.cropPage.tiller == 1 ? 'checked' : ''}
-                onchange="checkTiller()"> Tiller
+                onchange="checkProfession('tiller')"> Tiller
             <br>
             <input type="radio" name="profession"
                 ${model.viewState.cropPage.agriculturist ? 'checked' : ''}
-                onchange="checkAgriculturist()"> Agriculturist
+                onchange="checkProfession('agriculturist')"> Agriculturist
         </div>
 <!------ RESULT ---------->
         <div class="grid-item">
@@ -100,7 +101,6 @@ function showSelCrop(){
         <img class="itemimg" src="${item.icon}">
         ${item.text}</div>
         
-        <button onclick="removeSel()">Remove Selection</button>
         `
         if (item.text === "Cactus Fruit"){
             html += /*HTML*/`<div>Note: Cactus Fruit can only be grown 
@@ -110,6 +110,18 @@ function showSelCrop(){
             html += /*HTML*/`<div>Note: Tea Leaves can be grown in winter 
             only indoors</div>`
         }
+
+    html += /*HTML*/`<p>Choose quality:</p>
+    <section id="quality-selector">
+        <img class="quality" alt="None">
+        <img class="quality" src="bilder/ql_silver.png">
+        <img class="quality" src="bilder/ql_gold.png">
+        <img class="quality" src="bilder/ql_iridium.png">
+    
+    </section>
+    
+    <button onclick="removeSel()">Remove Selection</button>`
+
 
     document.querySelector('#cropsDisplay').innerHTML = html
 }
