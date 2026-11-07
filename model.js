@@ -13,6 +13,7 @@ const model = {
             amountSeeds: '',
             fertilizerType: '',
             tiller: 0,
+            agriculturist: 0,
 
             totalEarnings: 0,
             expenses: 0,

@@ -14,3 +14,10 @@ body {
     background-color: beige;
     padding: 5px 5px 10px 15px;
 }
+
+.crop-selector-controls {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: beige;
+}
