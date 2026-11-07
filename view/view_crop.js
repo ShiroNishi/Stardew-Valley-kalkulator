@@ -6,7 +6,7 @@ function cropView(){
     <div id="grid-container">
 
         <div class="grid-item">
-            <div>
+            <div class="crop-selector-controls">
                 <p>Crop selector:</p>
                 <input type="checkbox"> Include trees
                 <br>
@@ -14,9 +14,7 @@ function cropView(){
                 oninput="searchCrop(this.value)">
             </div>
 
-            <div id="cropsDisplay" 
-            style="padding-top: 100px";
-            margin-top: 1000px;></div>
+            <div id="cropsDisplay"></div>
         </div>
 <!------- CONFIG ------>
         <div class="grid-item">
@@ -30,10 +28,16 @@ function cropView(){
                 ${showFertilizer()}
             </select>
             <p>Profession: </p>
-            <input type="checkbox"
-                ${model.viewState.cropPage.tiller ? 'checked' : ''}
+            <input type="radio" name="profession" value="checked"
+                > None
+            <br>
+            <input type="radio" name="profession"
+                ${model.viewState.cropPage.tiller == 1 ? 'checked' : ''}
                 onchange="checkTiller()"> Tiller
-            <button onclick="fertilizerSelect(model.viewState.cropPage.fertilizerType)">test</button>
+            <br>
+            <input type="radio" name="profession"
+                ${model.viewState.cropPage.agriculturist ? 'checked' : ''}
+                onchange="checkAgriculturist()"> Agriculturist
         </div>
 <!------ RESULT ---------->
         <div class="grid-item">
@@ -137,4 +141,3 @@ item =>  vs (item) => :
     trenger parantesene HVIS du skal sende med indexen. (item, index)
 
 */
-

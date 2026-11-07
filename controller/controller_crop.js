@@ -1,8 +1,3 @@
-function searchCrop(input){
-    model.viewState.cropPage.cropSearch = input
-    showCrops()
-}
-
 function cropSelect(index){
     model.viewState.cropPage.selectedCrop = model.data.crops[index]
     localStorage.setItem("selectedCrop", JSON.stringify(model.viewState.cropPage.selectedCrop))
@@ -28,8 +23,15 @@ function fertilizerSelect(type){
 }
 
 function checkTiller(){
-    model.viewState.cropPage.tiller ^= 1;
+    model.viewState.cropPage.tiller = 1;
+    model.viewState.cropPage.agriculturist = 0;
     localStorage.setItem("tillerCheck", model.viewState.cropPage.tiller)
+}
+
+function checkAgriculturist(){
+    model.viewState.cropPage.tiller = 0;
+    model.viewState.cropPage.agriculturist = 1;
+    localStorage.setItem("agriculturistCheck", model.viewState.cropPage.agriculturist)
 }
 
 function calculateCropProfit(){
@@ -54,15 +56,18 @@ function calcTotalEarnings(){
     const amount = model.viewState.cropPage.amountSeeds;
     const fertilizer = model.viewState.cropPage.fertilizerType;
     const tiller = model.viewState.cropPage.tiller;
+    const agriculturist = model.viewState.cropPage.agriculturist;
     const currentCrop = findSelectedCrop();
-    if (tiller == 1) currentCrop.sell = Math.round(currentCrop.sell * 1.1)
+    const sellPrice = tiller === 1 ? Math.round(currentCrop.sell * 1.1) : currentCrop.sell
+        //agriculturist === 1 ? Math.round(currentCrop.days / 1.1)
+    const numberDays = calculateDays(currentCrop, fertilizer)
+    console.log(numberDays)
+        
+
+    const multiplyAmount = sellPrice * amount
 
 
-    //let fullPrice = currentCrop.price * amount;
-    //if (fertilizer) console.log("Denne gjør ikke noe enda");
-    //if (tiller == 1) fullPrice = fullPrice * 1.1;
-    //return model.viewState.cropPage.totalEarnings = fullPrice;
-    return model.viewState.cropPage.totalEarnings = currentCrop.sell
+    return model.viewState.cropPage.totalEarnings = multiplyAmount
 }
 
 function calcExpenses(){
@@ -71,4 +76,23 @@ function calcExpenses(){
     let fullExpenses = currentCrop.price * amount;
     return model.viewState.cropPage.expenses = fullExpenses
 
+}
+
+function calculateDays(currentCrop, fertilizer){
+    let getPercent = 0;
+    if (fertilizer === "") return currentCrop.days
+    else {
+        switch (fertilizer) {
+            case "10":
+                getPercent = currentCrop.days * 0.10
+                break;
+            case "25":
+                getPercent = currentCrop.days * 0.25
+                break;
+            case "33":
+                getPercent = currentCrop.days * 0.33
+                break;
+        }
+        return Math.floor(currentCrop.days - getPercent)
+    }
 }
