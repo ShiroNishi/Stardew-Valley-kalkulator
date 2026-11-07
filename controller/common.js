@@ -6,6 +6,7 @@ function loadSavedData(){
     const savedSelectedNoProf = localStorage.getItem("noProfCheck");
     const savedSelectedTiller = localStorage.getItem("tillerCheck");
     const savedSelectedAgriculturist = localStorage.getItem("agriculturistCheck");
+    const savedQuality = localStorage.getItem("selectedQuality")
     const validSeasons = ["spring", "summer", "fall", "winter", "all"];
     
     if(savedSelectedCrop) {
@@ -24,6 +25,7 @@ function loadSavedData(){
     if (savedSelectedSeason) model.viewState.cropPage.cropSeason = savedSelectedSeason;
     if (savedSelectedSeeds) model.viewState.cropPage.amountSeeds = savedSelectedSeeds;
     if (savedSelectedFertilizer) model.viewState.cropPage.fertilizerType = savedSelectedFertilizer;
+    if (savedQuality) model.viewState.cropPage.quality = savedQuality;
     if (savedSelectedNoProf) savedSelectedNoProf === '1' ? 1 : 0;
     if (savedSelectedTiller) savedSelectedTiller === '1' ? 1 : 0;
     if (savedSelectedAgriculturist) savedSelectedAgriculturist === '1' ? 1 : 0;

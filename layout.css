@@ -2,6 +2,10 @@ body {
     margin: 0% 10%;
 }
 
+.hidden {
+    display: none;
+}
+
 #grid-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

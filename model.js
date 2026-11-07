@@ -8,6 +8,7 @@ const model = {
             cropSeason: "spring",
             cropSearch: '',
             selectedCrop: '',
+            quality: 'normal',
             cycles: 1,
 
             amountSeeds: '',
@@ -61,7 +62,16 @@ const model = {
                 regrows: true, 
                 regrowDays: 4
             },
-            {icon: "bilder/corn.png", text: "Corn", season: ["summer", "fall"], price: 150, sell: 50, days: 14, regrows: true, regrowDays: 4},
+            {
+                icon: "bilder/corn.png", 
+                text: "Corn", 
+                season: ["summer", "fall"], 
+                price: 150, 
+                sell: 50, 
+                days: 14, 
+                regrows: true, 
+                regrowDays: 4
+            },
             {icon: "bilder/melon.png", text: "Melon", season: "summer", price: 80, sell: 250, days: 12, regrows: false},
             {icon: "bilder/pepper.png", text: "Hot Pepper", season: "summer", price: 40, sell: 40, days: 5, regrows: true, regrowDays: 3},
             {icon: "bilder/radish.png", text: "Radish", season: "summer", price: 40, sell: 90, days: 6, regrows: false},

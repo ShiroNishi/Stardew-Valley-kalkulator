@@ -5,7 +5,7 @@ function cropView(){
 <!------- CROP SELECT -->
     <div id="grid-container">
 
-        <div class="grid-item">
+        <div id ="search-crop-section" class="grid-item">
             <div class="crop-selector-controls">
                 <p>Crop selector:</p>
                 <input type="checkbox"> Include trees
@@ -30,7 +30,7 @@ function cropView(){
             <p>Profession: </p>
             <input type="radio" name="profession" value="checked"
                 ${model.viewState.cropPage.noProf == 1 ? 'checked' : ''}    
-                onchange="checkProfession('none)"> None
+                onchange="checkProfession('none')"> None
             <br>
             <input type="radio" name="profession"
                 ${model.viewState.cropPage.tiller == 1 ? 'checked' : ''}
@@ -113,16 +113,23 @@ function showSelCrop(){
 
     html += /*HTML*/`<p>Choose quality:</p>
     <section id="quality-selector">
-        <img class="quality" alt="None">
-        <img class="quality" src="bilder/ql_silver.png">
-        <img class="quality" src="bilder/ql_gold.png">
-        <img class="quality" src="bilder/ql_iridium.png">
+        <img class="quality ${model.viewState.cropPage.quality === 'normal' ? 'quality-selected' : ''}" alt="None"
+        onclick="setQuality('normal', this)">
+        <img class="quality ${model.viewState.cropPage.quality === 'silver' ? 'quality-selected' : ''}" src="bilder/ql_silver.png"
+        onclick="setQuality('silver', this)">
+        <img class="quality ${model.viewState.cropPage.quality === 'gold' ? 'quality-selected' : ''}" src="bilder/ql_gold.png"
+        onclick="setQuality('gold', this)">
+        <img class="quality ${model.viewState.cropPage.quality === 'iridium' ? 'quality-selected' : ''}" src="bilder/ql_iridium.png"
+        onclick="setQuality('iridium', this)">
     
+    </section>
+    <section>
+        <p>${calculateDays(findSelectedCrop(), model.viewState.cropPage.fertilizerType)} days until harvest</p>
+        <p>${calculateHarvests()} harvests in a season</p>
     </section>
     
     <button onclick="removeSel()">Remove Selection</button>`
-
-
+    //document.querySelectorAll('#search-crop-section .crop-selector-controls').classList.toggle('hidden')
     document.querySelector('#cropsDisplay').innerHTML = html
 }
 

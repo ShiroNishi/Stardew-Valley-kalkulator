@@ -31,3 +31,8 @@ body {
     min-width: 40px;
     cursor: pointer;
 }
+
+.quality-selected {
+    background-color: #e3d7d7e4;
+    border: solid 2px #9a580e;
+}

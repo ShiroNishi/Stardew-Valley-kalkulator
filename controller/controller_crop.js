@@ -47,9 +47,27 @@ function calculateCropProfit(){
 
     calcTotalEarnings(); 
     calcExpenses(); 
-    //calcNetIncome();
+    calcNetIncome();
+    calcNetIncomeDay();
 
     updateView();
+}
+
+function calcNetIncome(){
+    const total = calcTotalEarnings();
+    const expenses = calcExpenses();
+    model.viewState.cropPage.netIncome = total - expenses
+}
+
+function calcNetIncomeDay(){
+    const currentCrop = findSelectedCrop();
+    const fertilizer = model.viewState.cropPage.fertilizerType;
+    const total = calcTotalEarnings();
+    const expenses = calcExpenses();
+    const days = calculateDays(currentCrop, fertilizer);
+
+    model.viewState.cropPage.netIncomeDay = ((total - expenses) / days).toFixed(2)
+
 }
 
 function findSelectedCrop(){
@@ -65,15 +83,18 @@ function calcTotalEarnings(){
     const fertilizer = model.viewState.cropPage.fertilizerType;
     const tiller = model.viewState.cropPage.tiller;
     const agriculturist = model.viewState.cropPage.agriculturist;
+    const quality = model.viewState.cropPage.quality;
     const currentCrop = findSelectedCrop();
-    const sellPrice = tiller === 1 ? Math.round(currentCrop.sell * 1.1) : currentCrop.sell
+    let sellPrice = tiller === 1 ? Math.round(currentCrop.sell * 1.1) : currentCrop.sell
         //agriculturist === 1 ? Math.round(currentCrop.days / 1.1)
     const numberDays = calculateDays(currentCrop, fertilizer)
-    console.log(numberDays)
-        
+    
+    if (quality === 'normal') sellPrice = sellPrice
+    else if (quality === 'silver') sellPrice = Math.floor(sellPrice * 1.25)
+    else if (quality === 'gold') sellPrice = Math.floor(sellPrice * 1.5)
+    else if (quality === 'iridium') sellPrice = Math.floor(sellPrice * 2)
 
     const multiplyAmount = sellPrice * amount
-
 
     return model.viewState.cropPage.totalEarnings = multiplyAmount
 }
@@ -102,5 +123,25 @@ function calculateDays(currentCrop, fertilizer){
                 break;
         }
         return Math.floor(currentCrop.days - getPercent)
+    }
+}
+
+function setQuality(quality, box){
+    document.querySelectorAll('#quality-selector .quality').forEach(image => {
+        if (image !== box) image.classList.remove("quality-selected")
+    })
+    box.classList.add("quality-selected")
+    model.viewState.cropPage.quality = quality
+    localStorage.setItem("selectedQuality", model.viewState.cropPage.quality)
+}
+
+function calculateHarvests(){
+    const fertilizer = model.viewState.cropPage.fertilizerType
+    const currentCrop = findSelectedCrop();
+    if (currentCrop.regrows === true) return
+    else {
+        console.log(currentCrop)
+        const totalDays = calculateDays(currentCrop, fertilizer)
+        return Math.floor(28 / totalDays)
     }
 }
