@@ -5,9 +5,9 @@ function cropView(){
 <!------- CROP SELECT -->
     <div id="grid-container">
 
-        <div id ="search-crop-section" class="grid-item">
-            <div class="crop-selector-controls">
-                <p>Crop selector:</p>
+        <div id="search-crop-section" class="grid-item">
+        <p>Crop selector:</p>
+            <div id="crop-selector-controls">
                 <input type="checkbox"> Include trees
                 <br>
                 <input placeholder="Search crops"
@@ -28,15 +28,11 @@ function cropView(){
                 ${showFertilizer()}
             </select>
             <p>Profession: </p>
-            <input type="radio" name="profession" value="checked"
-                ${model.viewState.cropPage.noProf == 1 ? 'checked' : ''}    
-                onchange="checkProfession('none')"> None
-            <br>
-            <input type="radio" name="profession"
+            <input type="checkbox" name="profession"
                 ${model.viewState.cropPage.tiller == 1 ? 'checked' : ''}
                 onchange="checkProfession('tiller')"> Tiller
             <br>
-            <input type="radio" name="profession"
+            <input type="checkbox" name="profession"
                 ${model.viewState.cropPage.agriculturist ? 'checked' : ''}
                 onchange="checkProfession('agriculturist')"> Agriculturist
         </div>
@@ -83,12 +79,10 @@ function showCrops(){
     }
     document.querySelector('#cropsDisplay').innerHTML = html
 }
-
 function filterBySearch(filter, crops) {
     if (filter === '') return [...crops]
     return crops.filter(item => item.text.toLowerCase().includes(filter.toLowerCase()))
 }
-
 function filterBySeason(currentSeason, list){
     if (currentSeason === 'all') return list
     return list.filter(item => item.season === currentSeason || item.season.includes(currentSeason)) 
@@ -97,10 +91,9 @@ function filterBySeason(currentSeason, list){
 function showSelCrop(){
     let item = model.viewState.cropPage.selectedCrop
     let html = /*HTML*/ `
-        <div>
-        <img class="itemimg" src="${item.icon}">
-        ${item.text}</div>
-        
+            <div>
+            <img class="itemimg" src="${item.icon}">
+            ${item.text}</div>
         `
         if (item.text === "Cactus Fruit"){
             html += /*HTML*/`<div>Note: Cactus Fruit can only be grown 
@@ -126,11 +119,18 @@ function showSelCrop(){
     <section>
         <p>${calculateDays(findSelectedCrop(), model.viewState.cropPage.fertilizerType)} days until harvest</p>
         <p>${calculateHarvests()} harvests in a season</p>
+        <p>${regrowDaysInfo()}</p>
     </section>
     
     <button onclick="removeSel()">Remove Selection</button>`
-    //document.querySelectorAll('#search-crop-section .crop-selector-controls').classList.toggle('hidden')
+    document.querySelector('#crop-selector-controls').classList.toggle('hidden')
     document.querySelector('#cropsDisplay').innerHTML = html
+}
+
+function regrowDaysInfo(){
+    const crop = findSelectedCrop()
+    if (crop.regrows === true) return /*HTML*/ `Regrows every ${crop.regrowDays} days` 
+    return ''
 }
 
 function showFertilizer(){

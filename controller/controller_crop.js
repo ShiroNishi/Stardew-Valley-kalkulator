@@ -8,6 +8,7 @@ function cropSelect(index){
 function removeSel(){
     model.viewState.cropPage.selectedCrop = ''
     localStorage.setItem("selectedCrop", model.viewState.cropPage.selectedCrop)
+    document.querySelector('#crop-selector-controls').classList.remove('hidden')
     showCrops()
 }
 
@@ -23,28 +24,17 @@ function fertilizerSelect(type){
 }
 
 function checkProfession(type){
-    if (type == 'none') {
-        model.viewState.cropPage.noProf = 1;
-        model.viewState.cropPage.tiller = 0;
-        model.viewState.cropPage.agriculturist = 0;
-    } else if (type == 'tiller') {
-        model.viewState.cropPage.noProf = 0;
-        model.viewState.cropPage.tiller = 1;
-        model.viewState.cropPage.agriculturist = 0;
+    if (type == 'tiller') {
+        model.viewState.cropPage.tiller ^= 1;
+        localStorage.setItem("tillerCheck", model.viewState.cropPage.tiller)
     } else if (type == 'agriculturist') {
-        model.viewState.cropPage.noProf = 0;
-        model.viewState.cropPage.tiller = 0;
-        model.viewState.cropPage.agriculturist = 1;
+        model.viewState.cropPage.agriculturist ^= 1;
+        localStorage.setItem("agriculturistCheck", model.viewState.cropPage.agriculturist)
     }
-
-    localStorage.setItem("tillerCheck", model.viewState.cropPage.tiller)
-    localStorage.setItem("agriculturistCheck", model.viewState.cropPage.agriculturist)
-    localStorage.setItem("noProfCheck", model.viewState.cropPage.noProf)
 }
 
 function calculateCropProfit(){
     model.viewState.cropPage.totalEarnings = 0;
-
     calcTotalEarnings(); 
     calcExpenses(); 
     calcNetIncome();
@@ -80,14 +70,11 @@ function findSelectedCrop(){
 
 function calcTotalEarnings(){
     const amount = model.viewState.cropPage.amountSeeds;
-    const fertilizer = model.viewState.cropPage.fertilizerType;
     const tiller = model.viewState.cropPage.tiller;
-    const agriculturist = model.viewState.cropPage.agriculturist;
     const quality = model.viewState.cropPage.quality;
     const currentCrop = findSelectedCrop();
+
     let sellPrice = tiller === 1 ? Math.round(currentCrop.sell * 1.1) : currentCrop.sell
-        //agriculturist === 1 ? Math.round(currentCrop.days / 1.1)
-    const numberDays = calculateDays(currentCrop, fertilizer)
     
     if (quality === 'normal') sellPrice = sellPrice
     else if (quality === 'silver') sellPrice = Math.floor(sellPrice * 1.25)
@@ -136,11 +123,20 @@ function setQuality(quality, box){
 }
 
 function calculateHarvests(){
-    const fertilizer = model.viewState.cropPage.fertilizerType
+    let amountHarvest = 0;
     const currentCrop = findSelectedCrop();
-    if (currentCrop.regrows === true) return
+    const baseDays = parseInt(calculateDays(currentCrop, model.viewState.cropPage.fertilizerType))
+    const cropObj = {
+        days: baseDays,
+    }
+
+    if (currentCrop.regrows === true) {
+        for (let i = cropObj.days; i <= 28; i+= currentCrop.regrowDays){
+            amountHarvest ++;
+        }
+        return amountHarvest
+    }
     else {
-        console.log(currentCrop)
         const totalDays = calculateDays(currentCrop, fertilizer)
         return Math.floor(28 / totalDays)
     }

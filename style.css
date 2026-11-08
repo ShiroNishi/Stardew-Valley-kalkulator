@@ -5,7 +5,7 @@ body {
 }
 
 .grid-item {
-    min-height: 300px;
+    min-height: 350px;
     min-width: 170px;
     height: 270px;
     overflow: auto;
@@ -15,7 +15,7 @@ body {
     padding: 5px 5px 10px 15px;
 }
 
-.crop-selector-controls {
+#crop-selector-controls {
     position: sticky;
     top: 0;
     z-index: 1;

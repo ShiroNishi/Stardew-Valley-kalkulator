@@ -13,7 +13,6 @@ const model = {
 
             amountSeeds: '',
             fertilizerType: '',
-            noProf: 0,
             tiller: 0,
             agriculturist: 0,
 
@@ -73,6 +72,16 @@ const model = {
                 regrowDays: 4
             },
             {icon: "bilder/melon.png", text: "Melon", season: "summer", price: 80, sell: 250, days: 12, regrows: false},
+            {
+                icon: "bilder/hops.png", 
+                text: "Hops", 
+                season: "summer",
+                price: 60, 
+                sell: 25, 
+                days: 11, 
+                regrows: true, 
+                regrowDays: 1
+            },
             {icon: "bilder/pepper.png", text: "Hot Pepper", season: "summer", price: 40, sell: 40, days: 5, regrows: true, regrowDays: 3},
             {icon: "bilder/radish.png", text: "Radish", season: "summer", price: 40, sell: 90, days: 6, regrows: false},
             {icon: "bilder/rcabbage.png", text: "Red Cabbage", season: "summer", price: 100, sell: 260, days: 9, regrows: false},
