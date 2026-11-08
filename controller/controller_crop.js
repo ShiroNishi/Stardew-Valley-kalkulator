@@ -137,7 +137,7 @@ function calculateHarvests(){
         return amountHarvest
     }
     else {
-        const totalDays = calculateDays(currentCrop, fertilizer)
+        const totalDays = calculateDays(currentCrop, model.viewState.cropPage.fertilizerType)
         return Math.floor(28 / totalDays)
     }
 }

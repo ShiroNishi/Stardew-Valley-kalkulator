@@ -46,11 +46,24 @@ function cropView(){
             <p>Net income / per day:</p>
             <div>${model.viewState.cropPage.netIncome} g / ${model.viewState.cropPage.netIncomeDay} g per day</div>
             <button onclick="calculateCropProfit()">Calculate</button>
-
+            <br>
+            <p>${message()}</p>
         </div>
 
     </div>
     `
+    return html
+}
+
+function message(){
+    const crop = findSelectedCrop()
+    let html = ''
+    if (crop.regrows === true){
+        html = /*HTML*/ `
+            *The total and net income are based on max amounts 
+            of regrows during one season.
+        `
+    }
     return html
 }
 
