@@ -45,5 +45,6 @@ function changePage(newPage){
 function setSeason(season){
     model.viewState.cropPage.cropSeason = season
     localStorage.setItem("selectedSeason", season)
+    removeSel()
     showCrops()
 }

@@ -29,3 +29,7 @@ body {
     align-self: center;
     text-align: center;
 }
+
+.title {
+    margin-bottom: 0px;
+}

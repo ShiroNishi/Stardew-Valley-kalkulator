@@ -52,12 +52,58 @@ function calcNetIncome(){
 function calcNetIncomeDay(){
     const currentCrop = findSelectedCrop();
     const fertilizer = model.viewState.cropPage.fertilizerType;
+    const agriculturist = model.viewState.cropPage.agriculturist
     const total = calcTotalEarnings();
     const expenses = calcExpenses();
     const days = calculateDays(currentCrop, fertilizer);
 
-    model.viewState.cropPage.netIncomeDay = ((total - expenses) / days).toFixed(2)
+    if (agriculturist === 1) {
+        const daysWithProf = daysWithAgriculturist(currentCrop, fertilizer)
+        model.viewState.cropPage.netIncomeDay = ((total - expenses) / daysWithProf).toFixed(2)
 
+    } else {
+        model.viewState.cropPage.netIncomeDay = ((total - expenses) / days).toFixed(2)
+    }
+}
+
+function calculateDays(currentCrop, fertilizer){
+    const agriculturist = model.viewState.cropPage.agriculturist
+    let getPercent = 0;
+    if (fertilizer === "" && agriculturist === 0) return currentCrop.days
+    else if (agriculturist === 1) return daysWithAgriculturist(currentCrop, fertilizer)
+    else if (agriculturist === 0) {
+        switch (fertilizer) {
+            case "10":
+                getPercent = currentCrop.days * 0.10
+                break;
+            case "25":
+                getPercent = currentCrop.days * 0.25
+                break;
+            case "33":
+                getPercent = currentCrop.days * 0.33
+                break;
+        }
+        return Math.floor(currentCrop.days - getPercent)
+    }
+}
+
+function daysWithAgriculturist(currentCrop, fertilizer){
+    let getPercent = 0;
+    switch (fertilizer) {
+        case "":
+            getPercent = currentCrop.days * 0.10
+            break;
+        case "10":
+            getPercent = currentCrop.days * 0.20
+            break;
+        case "25":
+            getPercent = currentCrop.days * 0.35
+            break;
+        case "33":
+            getPercent = currentCrop.days * 0.43
+            break;
+    }
+    return Math.floor(currentCrop.days - getPercent)
 }
 
 function findSelectedCrop(){
@@ -94,25 +140,6 @@ function calcExpenses(){
 
 }
 
-function calculateDays(currentCrop, fertilizer){
-    let getPercent = 0;
-    if (fertilizer === "") return currentCrop.days
-    else {
-        switch (fertilizer) {
-            case "10":
-                getPercent = currentCrop.days * 0.10
-                break;
-            case "25":
-                getPercent = currentCrop.days * 0.25
-                break;
-            case "33":
-                getPercent = currentCrop.days * 0.33
-                break;
-        }
-        return Math.floor(currentCrop.days - getPercent)
-    }
-}
-
 function setQuality(quality, box){
     document.querySelectorAll('#quality-selector .quality').forEach(image => {
         if (image !== box) image.classList.remove("quality-selected")
@@ -131,13 +158,13 @@ function calculateHarvests(){
     }
 
     if (currentCrop.regrows === true) {
-        for (let i = cropObj.days; i <= 28; i+= currentCrop.regrowDays){
+        for (let i = cropObj.days; i <= 28 - 1; i+= currentCrop.regrowDays){
             amountHarvest ++;
         }
         return amountHarvest
     }
     else {
         const totalDays = calculateDays(currentCrop, model.viewState.cropPage.fertilizerType)
-        return Math.floor(28 / totalDays)
+        return Math.floor((28 - 1) / totalDays)
     }
 }

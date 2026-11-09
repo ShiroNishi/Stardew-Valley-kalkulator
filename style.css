@@ -8,8 +8,8 @@ body {
 }
 
 .grid-item {
-    min-height: 350px;
-    min-width: 170px;
+    min-height: 335px;
+    min-width: 200px;
     height: 270px;
     overflow: auto;
     border: solid #653602;

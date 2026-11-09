@@ -23,3 +23,18 @@ function seasonSelectionView(){
     `
     return html
 }
+
+function cropSelectorView(){
+    let html = /*HTML*/ `
+    <p>Crop selector:</p>
+            <div id="crop-selector-controls">
+                <input type="checkbox"> Include trees
+                <br>
+                <input placeholder="Search crops"
+                oninput="searchCrop(this.value)">
+            </div>
+
+            <div id="cropsDisplay"></div>
+    `
+    return html
+}
