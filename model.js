@@ -114,11 +114,11 @@ const model = {
             {icon: "bilder/amaranth.png", text: "Amaranth", season: "fall", artisan: ["pjar", "keg"], price: 70, sell: 150, regrows: false},
             {icon: "bilder/gberry.png", text: "Sweet Gem Berry", season: "fall", artisan: [], price: 1000, sell: 3000, days: 24, regrows: false},
 
-            {icon: "bilder/pmelon.png", text: "Powdermelon", season: "winter", price: 0, sell: 60, days: 7, regrows: false},
+            {icon: "bilder/pmelon.png", text: "Powdermelon", season: "winter", artisan: ["pjar", "keg", "dehydrator"], price: 0, sell: 60, days: 7, regrows: false},
 
-            {icon: "bilder/tea.png", text: "Tea Leaves", season: ["spring", "summer", "fall", "winter"], price: 0, sell: 50, days: 20, regrows: true, regrowDays: 1},
-            {icon: "bilder/cfruit.png", text: "Cactus Fruit", season: ["spring", "summer", "fall", "winter"], price: 150, sell: 75, days: 12, regrows: true, regrowDays: 3},
-            {icon: "bilder/afruit.png", text: "Ancient Fruit", season: ["spring", "summer", "fall"], price: 0, sell: 550, days: 28, regrows: true, regrowDays: 7},
+            {icon: "bilder/tea.png", text: "Tea Leaves", season: ["spring", "summer", "fall", "winter"], artisan: ["pjar", "keg"], price: 0, sell: 50, days: 20, regrows: true, regrowDays: 1},
+            {icon: "bilder/cfruit.png", text: "Cactus Fruit", season: ["spring", "summer", "fall", "winter"], artisan: ["pjar", "keg", "dehydrator"], price: 150, sell: 75, days: 12, regrows: true, regrowDays: 3},
+            {icon: "bilder/afruit.png", text: "Ancient Fruit", season: ["spring", "summer", "fall"], artisan: ["pjar", "keg", "dehydrator"], price: 0, sell: 550, days: 28, regrows: true, regrowDays: 7},
         ],
 
         fertilizer: [

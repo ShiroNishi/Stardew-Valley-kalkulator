@@ -23,11 +23,13 @@ function artisanView(){
 
 
 <!------ RESULT ---------->
+        <div class="grid-item">
+            <p>Result and Profit:</p>
+
+        </div>
+
 
     </div>
-    
-
-
     `
     return html
 }
@@ -35,10 +37,9 @@ function artisanView(){
 function showMachines(){
     let html = '';
     for (let machine of model.data.machines){
-        console.log(machine)
         html += /*HTML*/ `
-            <img class="machine-img" src="${machine.icon}">
-
+            <img class="machine-img" src="${machine.icon}"
+            onclick="">
         `
     }
     return html

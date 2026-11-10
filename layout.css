@@ -39,7 +39,3 @@ body {
     display: flex;
     gap: 25px;
 }
-.machine-img {
-    height: 70px;
-    cursor: pointer;
-}

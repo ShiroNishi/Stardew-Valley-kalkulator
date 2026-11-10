@@ -131,7 +131,6 @@ function calcTotalEarnings(){
 
     if (currentCrop.regrows === true) {
         let totalHarvests = calculateHarvests()
-        console.log("total:", multiplyAmount * totalHarvests)
         return model.viewState.cropPage.totalEarnings = multiplyAmount * totalHarvests
     }
 

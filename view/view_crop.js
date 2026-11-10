@@ -30,7 +30,7 @@ function cropView(){
         </div>
 <!------ RESULT ---------->
         <div class="grid-item">
-            <p>Result and Profit</p>
+            <p>Result and Profit:</p>
             <p class="title">Total earnings:</p>
             <div>${model.viewState.cropPage.totalEarnings} g</div>
             <p class="title">Expenses:</p>

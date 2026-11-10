@@ -39,3 +39,17 @@ body {
     background-color: #e3d7d7e4;
     border: solid 2px #9a580e;
 }
+
+
+.machine-img {
+    background-color: #ffffffd3;
+    border: solid 1px #9a580e;
+    padding: 2px 7px;
+    height: 70px;
+    cursor: pointer;
+}
+
+.machine-selected {
+    background-color: #e3d7d7e4;
+    border: solid 2px #9a580e;
+}
