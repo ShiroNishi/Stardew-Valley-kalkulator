@@ -2,10 +2,9 @@ function cropView(){
     let html = /*HTML*/ `
     <h2>Crop & Profit Calculator</h2>
     <div>${seasonSelectionView()}</div>
-    
+
 <!------- CROP SELECT -->
     <div id="grid-container">
-        
         <div id="search-crop-section" class="grid-item">
             ${cropSelectorView()}
         </div>
@@ -56,7 +55,7 @@ function message(){
         if (crop.regrows === true){
             html = /*HTML*/ `
                 *The total and net income are based on max amounts 
-                of regrows during one season.
+                of harvests during one season.
             `
         }
     } catch {
@@ -76,7 +75,7 @@ function showCrops(){
     }
 
     const crop = model.data.crops
-    const season = model.viewState.cropPage.cropSeason
+    const season = model.viewState.cropSeason
     const filter = model.viewState.cropPage.cropSearch
     let list = filterBySearch(filter, crop)
     list = filterBySeason(season, list)
@@ -114,19 +113,25 @@ function showSelCrop(){
             html += /*HTML*/`<div>Note: Tea Leaves can be grown in winter 
             only indoors</div>`
         }
-
-    html += /*HTML*/`<p class="title">Choose quality:</p>
-    <section id="quality-selector">
-        <img class="quality ${model.viewState.cropPage.quality === 'normal' ? 'quality-selected' : ''}" alt="None"
-        onclick="setQuality('normal', this)">
-        <img class="quality ${model.viewState.cropPage.quality === 'silver' ? 'quality-selected' : ''}" src="bilder/ql_silver.png"
-        onclick="setQuality('silver', this)">
-        <img class="quality ${model.viewState.cropPage.quality === 'gold' ? 'quality-selected' : ''}" src="bilder/ql_gold.png"
-        onclick="setQuality('gold', this)">
-        <img class="quality ${model.viewState.cropPage.quality === 'iridium' ? 'quality-selected' : ''}" src="bilder/ql_iridium.png"
-        onclick="setQuality('iridium', this)">
     
-    </section>
+        html += /*HTML*/`<p class="title">Choose quality:</p>
+        <section id="quality-selector">
+            <img class="quality ${model.viewState.cropPage.quality === 'normal' ? 'quality-selected' : ''}" alt="None"
+            onclick="setQuality('normal', this)">
+            <img class="quality ${model.viewState.cropPage.quality === 'silver' ? 'quality-selected' : ''}" src="bilder/ql_silver.png"
+            onclick="setQuality('silver', this)">
+            <img class="quality ${model.viewState.cropPage.quality === 'gold' ? 'quality-selected' : ''}" src="bilder/ql_gold.png"
+            onclick="setQuality('gold', this)">
+            <img class="quality ${model.viewState.cropPage.quality === 'iridium' ? 'quality-selected' : ''}" src="bilder/ql_iridium.png"
+            onclick="setQuality('iridium', this)">
+
+        </section>`
+     if (model.app.currentPage == 'artisanPage') {
+        html += /*HTML*/ `
+        <p>*Crop quality doesn't affect process results</p>
+        `
+    } 
+    html += /*HTML*/ `
     <section>
         <p class="title">${calculateDays(findSelectedCrop(), model.viewState.cropPage.fertilizerType)} days until harvest</p>
         <div class="title">${calculateHarvests()} harvests in a season</div>

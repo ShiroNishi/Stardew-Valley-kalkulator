@@ -4,19 +4,19 @@ function seasonSelectionView(){
         Choose season:
         <select onchange="setSeason(this.value)">
             <option value="spring"
-             ${model.viewState.cropPage.cropSeason === "spring" ? "selected" : ""}
+             ${model.viewState.cropSeason === "spring" ? "selected" : ""}
             >Spring</option>
             <option value="summer"
-             ${model.viewState.cropPage.cropSeason === "summer" ? "selected" : ""}
+             ${model.viewState.cropSeason === "summer" ? "selected" : ""}
             >Summer</option>
             <option value="fall"
-             ${model.viewState.cropPage.cropSeason === "fall" ? "selected" : ""}
+             ${model.viewState.cropSeason === "fall" ? "selected" : ""}
             >Fall</option>
             <option value="winter"
-             ${model.viewState.cropPage.cropSeason === "winter" ? "selected" : ""}
+             ${model.viewState.cropSeason === "winter" ? "selected" : ""}
             >Winter</option>
             <option value="all"
-             ${model.viewState.cropPage.cropSeason === "all" ? "selected" : ""}
+             ${model.viewState.cropSeason === "all" ? "selected" : ""}
             >All</option>
         </select>
     </section> 

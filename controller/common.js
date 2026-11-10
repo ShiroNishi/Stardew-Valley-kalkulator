@@ -6,6 +6,7 @@ function loadSavedData(){
     const savedSelectedTiller = localStorage.getItem("tillerCheck");
     const savedSelectedAgriculturist = localStorage.getItem("agriculturistCheck");
     const savedQuality = localStorage.getItem("selectedQuality")
+    const savedPage = localStorage.getItem("currentPage")
     const validSeasons = ["spring", "summer", "fall", "winter", "all"];
     
     if(savedSelectedCrop) {
@@ -19,9 +20,11 @@ function loadSavedData(){
     }
     
     if (validSeasons.includes(savedSelectedSeason)) {
-        model.viewState.cropPage.cropSeason = savedSelectedSeason;
+        model.viewState.cropSeason = savedSelectedSeason;
     }
-    if (savedSelectedSeason) model.viewState.cropPage.cropSeason = savedSelectedSeason;
+
+    if (savedPage) model.app.currentPage = savedPage;
+    if (savedSelectedSeason) model.viewState.cropSeason = savedSelectedSeason;
     if (savedSelectedSeeds) model.viewState.cropPage.amountSeeds = savedSelectedSeeds;
     if (savedSelectedFertilizer) model.viewState.cropPage.fertilizerType = savedSelectedFertilizer;
     if (savedQuality) model.viewState.cropPage.quality = savedQuality;
@@ -39,11 +42,12 @@ function searchCrop(input){
 function changePage(newPage){
     if (newPage === 'crops') model.app.currentPage = 'cropPage';
     else if (newPage === 'artisan') model.app.currentPage = 'artisanPage';
+    localStorage.setItem("currentPage", model.app.currentPage)
     updateView()
 }
 
 function setSeason(season){
-    model.viewState.cropPage.cropSeason = season
+    model.viewState.cropSeason = season
     localStorage.setItem("selectedSeason", season)
     removeSel()
     showCrops()

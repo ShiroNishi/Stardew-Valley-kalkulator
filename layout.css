@@ -33,3 +33,13 @@ body {
 .title {
     margin-bottom: 0px;
 }
+
+#machine-container {
+    margin: 5px 15px;
+    display: flex;
+    gap: 25px;
+}
+.machine-img {
+    height: 70px;
+    cursor: pointer;
+}

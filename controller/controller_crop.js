@@ -129,6 +129,12 @@ function calcTotalEarnings(){
 
     const multiplyAmount = sellPrice * amount
 
+    if (currentCrop.regrows === true) {
+        let totalHarvests = calculateHarvests()
+        console.log("total:", multiplyAmount * totalHarvests)
+        return model.viewState.cropPage.totalEarnings = multiplyAmount * totalHarvests
+    }
+
     return model.viewState.cropPage.totalEarnings = multiplyAmount
 }
 
