@@ -52,10 +52,11 @@ function calcNetIncome(){
 function calcNetIncomeDay(){
     const currentCrop = findSelectedCrop();
     const fertilizer = model.viewState.cropPage.fertilizerType;
-    const agriculturist = model.viewState.cropPage.agriculturist
+    const agriculturist = model.viewState.cropPage.agriculturist;
     const total = calcTotalEarnings();
     const expenses = calcExpenses();
     const days = calculateDays(currentCrop, fertilizer);
+    const harvests = calculateHarvests();
 
     if (agriculturist === 1) {
         const daysWithProf = daysWithAgriculturist(currentCrop, fertilizer)
