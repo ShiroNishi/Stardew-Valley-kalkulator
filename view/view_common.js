@@ -4,19 +4,19 @@ function seasonSelectionView(){
         Choose season:
         <select onchange="setSeason(this.value)">
             <option value="spring"
-             ${model.viewState.cropPage.cropSeason === "spring" ? "selected" : ""}
+             ${model.viewState.cropSeason === "spring" ? "selected" : ""}
             >Spring</option>
             <option value="summer"
-             ${model.viewState.cropPage.cropSeason === "summer" ? "selected" : ""}
+             ${model.viewState.cropSeason === "summer" ? "selected" : ""}
             >Summer</option>
             <option value="fall"
-             ${model.viewState.cropPage.cropSeason === "fall" ? "selected" : ""}
+             ${model.viewState.cropSeason === "fall" ? "selected" : ""}
             >Fall</option>
             <option value="winter"
-             ${model.viewState.cropPage.cropSeason === "winter" ? "selected" : ""}
+             ${model.viewState.cropSeason === "winter" ? "selected" : ""}
             >Winter</option>
             <option value="all"
-             ${model.viewState.cropPage.cropSeason === "all" ? "selected" : ""}
+             ${model.viewState.cropSeason === "all" ? "selected" : ""}
             >All</option>
         </select>
     </section> 
@@ -36,5 +36,35 @@ function cropSelectorView(){
 
             <div id="cropsDisplay"></div>
     `
+    return html
+}
+
+function message(){
+    const currentPage = model.app.currentPage
+    const crop = findSelectedCrop()
+    const currentMachine = findSelectedMachine()
+    let html = ''
+    if (currentPage == 'cropPage') {
+        try {
+            if (crop.regrows === true){
+                html = /*HTML*/ `
+                    <p>*The total and net income are based on max amounts 
+                    of harvests during one season.</p>
+                `
+            }
+        } catch {
+            return ''
+        }
+    } else if (currentPage == 'artisanPage') {
+        try {
+            if (!crop.artisan.includes(currentMachine.value)) {
+                html = /*HTML*/ `
+                    <p>*${crop.text} can't be processed in a ${currentMachine.text.toLowerCase()}</p>
+                `
+            }
+        } catch {
+            return ''
+        }
+    } 
     return html
 }

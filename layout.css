@@ -33,3 +33,9 @@ body {
 .title {
     margin-bottom: 0px;
 }
+
+#machine-container {
+    margin: 5px 10px;
+    display: flex;
+    gap: 20px;
+}
