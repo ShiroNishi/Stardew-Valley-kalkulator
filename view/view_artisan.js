@@ -13,7 +13,8 @@ function artisanView(){
             <p>Configurations:</p>
             <p class="title">Amount:</p>
             <input placeholder="0"
-            value="${model.viewState.artisanPage.amountItems}">
+            value="${model.viewState.artisanPage.amountItems}"
+            oninput="numCrops(this.value)">
             <p class="title">Profession:</p>
             <input type="checkbox">Artisan
             <p class="title">Process Machine:</p>
@@ -26,7 +27,7 @@ function artisanView(){
             <p class="title">Time until ready</p>
             <div>${model.viewState.artisanPage.time}</div>
             <p class="title">Total Income:</p>
-            <div>0 g</div>
+            <div>${model.viewState.artisanPage.totalEarnings} g</div>
             <p class="title">Net income per day</p>
             <div>0 g per day</div>
             <br>
