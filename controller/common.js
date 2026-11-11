@@ -6,6 +6,7 @@ function loadSavedData(){
     const savedSelectedTiller = localStorage.getItem("tillerCheck");
     const savedSelectedAgriculturist = localStorage.getItem("agriculturistCheck");
     const savedQuality = localStorage.getItem("selectedQuality")
+    const savedMachine = localStorage.getItem("selectedMachine")
     const savedPage = localStorage.getItem("currentPage")
     const validSeasons = ["spring", "summer", "fall", "winter", "all"];
     
@@ -28,6 +29,7 @@ function loadSavedData(){
     if (savedSelectedSeeds) model.viewState.cropPage.amountSeeds = savedSelectedSeeds;
     if (savedSelectedFertilizer) model.viewState.cropPage.fertilizerType = savedSelectedFertilizer;
     if (savedQuality) model.viewState.cropPage.quality = savedQuality;
+    if (savedMachine) model.viewState.artisanPage.machine = savedMachine;
     if (savedSelectedTiller) savedSelectedTiller === '1' ? 1 : 0;
     if (savedSelectedAgriculturist) savedSelectedAgriculturist === '1' ? 1 : 0;
 }
@@ -52,3 +54,4 @@ function setSeason(season){
     removeSel()
     showCrops()
 }
+

@@ -48,22 +48,6 @@ function cropView(){
     return html
 }
 
-function message(){
-    const crop = findSelectedCrop()
-    let html = ''
-    try {
-        if (crop.regrows === true){
-            html = /*HTML*/ `
-                *The total and net income are based on max amounts 
-                of harvests during one season.
-            `
-        }
-    } catch {
-        return ''
-    }
-    return html
-}
-
 function showCrops(){
     let html = ''
     if (!document.querySelector('#cropsDisplay')) return 

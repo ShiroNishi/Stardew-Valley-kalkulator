@@ -38,3 +38,33 @@ function cropSelectorView(){
     `
     return html
 }
+
+function message(){
+    const currentPage = model.app.currentPage
+    const crop = findSelectedCrop()
+    const currentMachine = findSelectedMachine()
+    let html = ''
+    if (currentPage == 'cropPage') {
+        try {
+            if (crop.regrows === true){
+                html = /*HTML*/ `
+                    <p>*The total and net income are based on max amounts 
+                    of harvests during one season.</p>
+                `
+            }
+        } catch {
+            return ''
+        }
+    } else if (currentPage == 'artisanPage') {
+        try {
+            if (!crop.artisan.includes(currentMachine.value)) {
+                html = /*HTML*/ `
+                    <p>*${crop.text} can't be processed in a ${currentMachine.text.toLowerCase()}</p>
+                `
+            }
+        } catch {
+            return ''
+        }
+    } 
+    return html
+}
