@@ -24,7 +24,7 @@ function artisanView(){
         <div class="grid-item">
             <p>Result and Profit:</p>
             <p class="title">Time until ready</p>
-            <div>X days</div>
+            <div>${model.viewState.artisanPage.time}</div>
             <p class="title">Total Income:</p>
             <div>0 g</div>
             <p class="title">Net income per day</p>

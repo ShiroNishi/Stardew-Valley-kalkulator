@@ -25,7 +25,7 @@ const model = {
             amountItems: '',
             machine: '',
 
-            time: 0,
+            time: "0 min / 0 days",
             totalEarnings: 0,
             netIncomeDay: 0,
 

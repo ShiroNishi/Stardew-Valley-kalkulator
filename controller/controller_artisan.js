@@ -26,6 +26,23 @@ function calculateArtisanProfit(){
 
 
 function calcTimeReady(){
+    let time = 0
+    const machine = model.viewState.artisanPage.machine
+    const currentCrop = findSelectedCrop();
+    switch (machine){
+        case "pjar":
+            break;
 
-    return 0
+        case "keg":
+            if (currentCrop.type == "wheat") time = "1750 min / 1.1 days"
+            else if (currentCrop.type == "coffee") time = "120 min / 2 hours"
+            else if (currentCrop.type == "tea") time = "180 min / 3 hours"
+            else if (currentCrop.type == "hops") time = "2250 min / 1.4 days"
+            break;
+
+        case "dhydrator":
+            break;
+    }
+
+    model.viewState.artisanPage.time = time
 }
