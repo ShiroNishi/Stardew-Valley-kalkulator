@@ -61,7 +61,7 @@ function message(){
                 html = /*HTML*/ `
                     <p>*${crop.text} can't be processed in a ${currentMachine.text.toLowerCase()}</p>
                 `
-            }
+            } 
         } catch {
             return ''
         }

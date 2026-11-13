@@ -20,34 +20,52 @@ function calculateArtisanProfit(){
     model.viewState.artisanPage.totalEarnings = 0;
     calcTimeReady();
     calcProcessIncome();
+    calcProcessNetIncome();
 
-    updateView()
+    updateView();
 }
 
-
-
 function calcTimeReady(){
-    let time = 0
+    let mins = 0;
+    let hours = 0;
+    let days = 0;
     const machine = model.viewState.artisanPage.machine
     const currentCrop = findSelectedCrop();
     switch (machine){
         case "pjar":
+            mins = 4000
+            days = 3;
             break;
-
+            
         case "keg":
-            if (currentCrop.type == "wheat") time = "1750 min / 1.1 days"
+            if (currentCrop.type == "wheat") {
+                mins = 1750;
+                days = 1.1;
+            }
             //else if (currentCrop.type == "coffee") time = "120 min / 2 hours"
-            else if (currentCrop.type == "tea") time = "180 min / 3 hours"
-            else if (currentCrop.type == "hops") time = "2250 min / 1.4 days"
-            else if (currentCrop.type == "vegetable") time = "6000 min / 4 days"
-            else if (currentCrop.type == "fruit") time = "10000 mins / 6.25 days"
+            else if (currentCrop.type == "tea") {
+                mins = 180;
+                hours = 3;
+            } else if (currentCrop.type == "hops") {
+                mins = 2250;
+                days = 1.4;
+            } else if (currentCrop.type == "vegetable") {
+                mins = 6000; 
+                days = 4;
+            }
+            else if (currentCrop.type == "fruit"){
+                mins = 10000;
+                days = 6.25;
+            }
             break;
-
+            
         case "dhydrator":
             break;
     }
-
-    model.viewState.artisanPage.time = time
+        if (days == 0) model.viewState.artisanPage.time = `${mins} mins / ${hours} hours`
+        if (hours == 0) model.viewState.artisanPage.time = `${mins} mins / ${days} days`
+        let time = {mins, hours, days};
+    return time
 }
 
 function calcProcessIncome(){
@@ -57,25 +75,41 @@ function calcProcessIncome(){
     const currentCrop = findSelectedCrop();
     switch (machine){
         case "pjar":
+                sellPrice = Math.floor((currentCrop.sell * 2) + 50)
             break;
         case "keg":
             if (currentCrop.type == "wheat") sellPrice = 200
-            //else if (currentCrop.type == "coffee") sellPrice = 150 {
+            //else if (currentCrop.type == "coffee")
+                //if (amount < 5) 
+            
             //må ha 5 bønner}
             else if (currentCrop.type == "tea") sellPrice = 100
             else if (currentCrop.type == "hops") sellPrice = 300
-            //else if (currentCrop.type == "vegetable") 
-            //else if (currentCrop.type == "fruit") 
+            else if (currentCrop.type == "vegetable") {
+                sellPrice = Math.floor(currentCrop.sell * 2.25)
+            }
+            else if (currentCrop.type == "fruit") {
+                sellPrice = Math.floor(currentCrop.sell * 3)
+            }
             break;
         case "dhydrator":
+
             break;
     }
 
     const totalSellPrice = sellPrice * amount
-
     model.viewState.artisanPage.totalEarnings = totalSellPrice
+    return totalSellPrice
+}
+
+function calcProcessNetIncome(){
+    const income = calcProcessIncome();
+    const time = calcTimeReady();
+    console.log(time)
+    console.log(income)
 }
 
 function numCrops(input){
-    model.viewState.artisanPage.amountItems = parseInt(input)
+    model.viewState.artisanPage.amountItems = parseInt(input);
+    localStorage.setItem("selectedItems", model.viewState.artisanPage.amountItems);
 }

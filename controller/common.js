@@ -2,6 +2,7 @@ function loadSavedData(){
     const savedSelectedSeason = localStorage.getItem("selectedSeason");
     const savedSelectedCrop = localStorage.getItem("selectedCrop");
     const savedSelectedSeeds = localStorage.getItem("selectedSeeds");
+    const savedSelectedItems = localStorage.getItem("selectedItems");
     const savedSelectedFertilizer = localStorage.getItem("selectedFertilizer");
     const savedSelectedTiller = localStorage.getItem("tillerCheck");
     const savedSelectedAgriculturist = localStorage.getItem("agriculturistCheck");
@@ -27,6 +28,7 @@ function loadSavedData(){
     if (savedPage) model.app.currentPage = savedPage;
     if (savedSelectedSeason) model.viewState.cropSeason = savedSelectedSeason;
     if (savedSelectedSeeds) model.viewState.cropPage.amountSeeds = savedSelectedSeeds;
+    if (savedSelectedItems) model.viewState.artisanPage.amountItems = savedSelectedItems;
     if (savedSelectedFertilizer) model.viewState.cropPage.fertilizerType = savedSelectedFertilizer;
     if (savedQuality) model.viewState.cropPage.quality = savedQuality;
     if (savedMachine) model.viewState.artisanPage.machine = savedMachine;
